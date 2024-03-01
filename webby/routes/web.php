@@ -32,12 +32,19 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //     return view('dashboard.users');
         // })->name('users');
 
-        Route::get('/users', 'DashboardController@show')->name('users.show');
+        Route::get('users', 'DashboardController@show')->name('users.show');
         Route::get('/users/create', 'DashboardController@create')->name('users.create');
         Route::post('/users/add', 'DashboardController@add')->name('users.add');
         Route::get('/users/{user}/edit', 'DashboardController@edit')->name('users.edit');
         Route::put('/users/{user}/update', 'DashboardController@update')->name('users.update');
         Route::delete('/users/{user}/delete', 'DashboardController@delete')->name('users.delete');
+
+        Route::get('/post', 'PostController@index')->name('post.index');
+        Route::get('/post/create', 'PostController@create')->name('post.create');
+        Route::post('/post/add', 'PostController@add')->name('post.add');
+        Route::get('/post/{post}/edit', 'PostController@edit')->name('post.edit');
+        Route::put('/post/{post}/update', 'PostController@update')->name('post.update');
+        Route::delete('/post/{post}/delete', 'PostController@delete')->name('post.delete');
 
     });
 });
