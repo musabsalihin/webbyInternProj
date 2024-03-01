@@ -37,6 +37,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/users/add', 'DashboardController@add')->name('users.add');
         Route::get('/users/{user}/edit', 'DashboardController@edit')->name('users.edit');
         Route::put('/users/{user}/update', 'DashboardController@update')->name('users.update');
+        Route::delete('/users/{user}/delete', 'DashboardController@delete')->name('users.delete');
 
     });
 });

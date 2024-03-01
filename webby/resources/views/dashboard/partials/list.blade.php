@@ -13,7 +13,9 @@
             <td>{{$user->email}}</td>
             <td><a href="{{route('users.edit', ['user'=>$user])}}">Edit</a></td>
             <td>
-                <form method="post" action="">
+                <form method="post" action="{{route('users.delete', ['user'=>$user])}}">
+                    @csrf
+                    @method('delete')
                     <input type="submit" value="Delete" />
                 </form>
             </td>
