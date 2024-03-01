@@ -13,16 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::middleware([
+        'auth:sanctum',
+        config('jetstream.auth_session'),
+        'verified',
+    ])->group(function () {
+
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
+
+        // Route::get('/users', function(){
+        //     return view('dashboard.users');
+        // })->name('users');
+
+        Route::get('/users', 'DashboardController@show')->name('users.show');
+        Route::get('/users/create', 'DashboardController@create')->name('users.create');
+        Route::post('/users/add', 'DashboardController@add')->name('users.add');
+        Route::get('/users/{user}/edit', 'DashboardController@edit')->name('users.edit');
+        Route::put('/users/{user}/update', 'DashboardController@update')->name('users.update');
+
+    });
 });
