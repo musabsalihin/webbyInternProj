@@ -4,6 +4,7 @@
             <th class="p-4">ID</th>
             <th class="text-left w-1/3 p-4">Name</th>
             <th class="text-left w-1/3 p-4">Email</th>
+            <th class="p-4 max-w-fit">Role</th>
             <th class="p-4 max-w-fit">Status</th>
             <th class="p-4"></th>
             <th class="p-4"></th>
@@ -13,6 +14,7 @@
             <td class="py-2 px-4">{{$user->id}}</td>
             <td class="text-left py-2 px-4">{{$user->name}}</td>
             <td class="text-left py-2 px-4">{{$user->email}}</td>
+            <td class="py-2 px-4">{{$user->role}}</td>
             <td class="py-2 px-4">
             @if($user->email_verified_at)
             {{'Verified'}}

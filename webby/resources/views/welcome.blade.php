@@ -16,10 +16,7 @@
 
     </head>
     <body class="min-h-screen antialiased">
-    <div class="max-w-7xl mt-20 mx-auto px-4 sm:px-6 lg:px-8 ">
-        <div class="sm:fixed sm:top-0 sm:left-0 p-4 m-2 text-center z-10 text-3xl">
-            <a href="{{route('post.show')}}">WEBBY</a>
-        </div>      
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
@@ -33,11 +30,16 @@
                     @endauth
                 </div>
             @endif
+            <div class="sm:fixed sm:top-0 sm:left-0 p-4 m-2 text-center z-10 text-3xl">
+                <a href="{{route('post.show')}}">
+                    Webby Group
+                </a>    
+            </div> 
 
-            <div class="">
+            <div class="mt-0 lg:mt-16 ">
                 <h1 class="text-3xl mb-5 text-center">Welcome to WEBBY Post!</h1>
                     @foreach($posts as $post)
-                    <div class="border-solid border-2 rounded-2xl h-96">
+                    <div class="border-solid border-2 rounded-2xl h-96 mb-8">
                         <div class="h-3/4 bg-gray-400 rounded-t-2xl">
                             <img src="" alt="image here" class="w-full h-full rounded-t-xl">
                         </div>

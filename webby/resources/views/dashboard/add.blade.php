@@ -17,6 +17,14 @@
                     <label class="block mb-1" for="email">Email</label>
                     <input class="w-full rounded-xl border-gray-400 focus:outline-none focus:border-blue-500" id="email" name="email" type="text">
                 </div>
+                <div class="block my-6">
+                    <label class="block mb-1" for="role">Role</label>
+                    <select class="w-full rounded-xl border-gray-400 focus:outline-none focus:border-blue-500" id="role" name="role">
+                        <option value="">Select a role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Editor">Editor</option>
+                    </select>
+                </div>
                 <div class="flex justify-end my-6" >
                     <input class="items-center px-4 py-3 bg-gray-800 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" 
                     type="submit" value="Add User">

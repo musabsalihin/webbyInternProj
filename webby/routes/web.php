@@ -26,20 +26,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         'verified',
     ])->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', 'DashboardController@summary')->middleware('admin')->name('dashboard');
 
         // Route::get('/users', function(){
         //     return view('dashboard.users');
         // })->name('users');
 
-        Route::get('users', 'DashboardController@show')->name('users.show');
-        Route::get('/users/create', 'DashboardController@create')->name('users.create');
-        Route::post('/users/add', 'DashboardController@add')->name('users.add');
-        Route::get('/users/{user}/edit', 'DashboardController@edit')->name('users.edit');
-        Route::put('/users/{user}/update', 'DashboardController@update')->name('users.update');
-        Route::delete('/users/{user}/delete', 'DashboardController@delete')->name('users.delete');
+        Route::get('users', 'DashboardController@show')->middleware('admin')->name('users.show');
+        Route::get('/users/create', 'DashboardController@create')->middleware('admin')->name('users.create');
+        Route::post('/users/add', 'DashboardController@add')->middleware('admin')->name('users.add');
+        Route::get('/users/{user}/edit', 'DashboardController@edit')->middleware('admin')->name('users.edit');
+        Route::put('/users/{user}/update', 'DashboardController@update')->middleware('admin')->name('users.update');
+        Route::delete('/users/{user}/delete', 'DashboardController@delete')->middleware('admin')->name('users.delete');
 
         Route::get('/post', 'PostController@index')->name('post.index');
         Route::get('/post/create', 'PostController@create')->name('post.create');
