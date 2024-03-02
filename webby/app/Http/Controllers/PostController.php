@@ -14,6 +14,21 @@ class PostController extends Controller
         return view('post.index', ['posts' => $posts]);
     }
 
+    public function show(){
+        // $posts = Post::all();
+        $now = date('Y-m-d');
+        $test = Post::where([
+            ['status','=','Published'],
+            ['publish_date','<=',$now],
+        ])->get();
+        // dd($test);
+        return view('welcome', ['posts' => $test]);
+    }
+
+    public function read(Post $post){
+        return view('post.read',['post' => $post]);
+    }
+
     //view one post
 
     //create a new post

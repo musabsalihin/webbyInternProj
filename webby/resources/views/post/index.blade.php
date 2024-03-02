@@ -27,10 +27,10 @@
                 <td class="px-4 py-2">{{$post->publish_date->format('d-M-Y')}}</td>
                 <td class="px-4 py-2">
                     <a class="w-full inline-flex items-center justify-center py-1 px-4 bg-blue-400 rounded-xl text-white font-semibold hover:cursor-pointer hover:bg-blue-500 focus:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 transition ease-in-out duration-150" 
-                     href="{{route('post.edit', ['post' => $post])}}">Edit</a>
+                     href="{{route('post.edit', ['post' => $post->slug])}}">Edit</a>
                     </td>
                 <td class="px-4 py-2">
-                    <form method="post" action="{{route('post.delete', ['post' => $post])}}">
+                    <form method="post" action="{{route('post.delete', ['post' => $post->slug])}}">
                         @csrf
                         @method('delete')
                         <input class="w-full py-1 px-2 bg-red-400 rounded-xl text-white font-semibold hover:cursor-pointer hover:bg-red-500 focus:bg-red-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 transition ease-in-out duration-150"
