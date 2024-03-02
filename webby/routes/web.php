@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/', 'PostController@show')->name('post.show');
     Route::get('/read/{post}', 'PostController@read')->name('post.read');
-    // Route::get('/', function(){
-    //     return view('welcome');
-    // });
 
     Route::middleware([
         'auth:sanctum',
@@ -27,10 +24,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     ])->group(function () {
 
         Route::get('/dashboard', 'DashboardController@summary')->middleware('admin')->name('dashboard');
-
-        // Route::get('/users', function(){
-        //     return view('dashboard.users');
-        // })->name('users');
 
         Route::get('users', 'DashboardController@show')->middleware('admin')->name('users.show');
         Route::get('/users/create', 'DashboardController@create')->middleware('admin')->name('users.create');

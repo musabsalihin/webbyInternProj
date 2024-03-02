@@ -21,6 +21,7 @@ class PostController extends Controller
             ['status','=','Published'],
             ['publish_date','<=',$now],
         ])->get();
+        
         // dd($test);
         return view('welcome', ['posts' => $test]);
     }
@@ -50,12 +51,24 @@ class PostController extends Controller
         $data = $request -> validate([
             'title' => 'required|string|unique:posts|max:255',
             'description' => 'required',
+            'image' => 'nullable|mimes:jpeg,jpg,png',
             'publish_date' => 'required|after_or_equal:'.$current_date,
             'status' => 'required'           
         ]);
 
+        
         $newPost = Post::create($data);
-
+        
+        if($request->has('image')){
+            $img = $newPost->addMedia($request->image)->toMediaCollection('bg-posts');
+            $path = $img->getUrl();
+            // dd($path);
+            $newPost->update([
+                'image'=>$path,
+            ]);
+        }
+        // dd($newPost);
+        // dd($data['image']);
         return redirect(route('post.index'));
     }
 

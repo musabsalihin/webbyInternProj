@@ -6,10 +6,10 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Add New Post') }}
     </x-slot>
-    <x-validation-errors class="mb-4" />
     <div class="max-w-7xl h-full mx-auto px-4 sm:px-6 lg:px-8">
+        <x-validation-errors class="mb-4" />
 
-        <form class="mt-4" method="post" action="{{route('post.add')}}">
+        <form class="mt-4" method="post" action="{{route('post.add')}}" enctype="multipart/form-data">
             @csrf
             @method('post')
             <div class="my-4">
@@ -19,6 +19,10 @@
             <div class="my-4">
                 <label class="block text-xl font-bold" for="publish_date">Publish Date</label>
                 <input class="rounded-2xl" id="publish_date" name="publish_date" type="date" min="{{now('Asia/Singapore')->format('Y-m-d')}}">
+            </div>
+            <div class="my-4">
+                <label class="block text-xl font-bold" for="image">Background Picture</label>
+                <input class="rounded-2xl bg-white p-4 border-solid border-2 border-gray-400" id="image" name="image" type="file">
             </div>
             <div class="my-4">
                 <label class="block text-xl font-bold" for="description">Description</label>

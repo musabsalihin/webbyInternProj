@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Post extends Model
+class Post extends Model implements HasMedia
 {
     use HasFactory;
     use HasSlug;
+    use InteractsWithMedia;
 
     public function getSlugOptions(): SlugOptions
     {
@@ -24,11 +27,16 @@ class Post extends Model
     protected $fillable = [
         'title',
         'description',
+        'image',
         'publish_date',
         'status',
     ];
 
     protected $casts = [
         'publish_date' => 'datetime',
+    ];
+
+    protected $appends = [
+        'image',
     ];
 }

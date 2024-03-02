@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Webby</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,6 +13,36 @@
         <!-- Styles -->
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            .image{
+                background-position: center;      
+                background-repeat: no-repeat;
+                background-size:cover;                
+            }
+            .overlay {
+                position: relative;
+                transition: all 1s;
+            }
+
+            .overlay:after {
+                content: '\A';
+                border-radius:12px 12px 0px 0px;
+                position: absolute;
+                width: 100%; 
+                height:100%;
+                top:0; 
+                left:0;
+                background:rgba(0,0,0,0.5);
+                opacity: 1;
+                transition: all 0.5s;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+            }
+            .overlay:hover:after {
+                 opacity: 0;
+            }
+        </style>
 
     </head>
     <body class="min-h-screen antialiased">
@@ -35,22 +65,22 @@
                     Webby Group
                 </a>    
             </div> 
-
+            
             <div class="mt-0 lg:mt-16 ">
                 <h1 class="text-3xl mb-5 text-center">Welcome to WEBBY Post!</h1>
-                    @foreach($posts as $post)
-                    <div class="border-solid border-2 rounded-2xl h-96 mb-8">
-                        <div class="h-3/4 bg-gray-400 rounded-t-2xl">
-                            <img src="" alt="image here" class="w-full h-full rounded-t-xl">
-                        </div>
-                        <div class="h-1/4 bg-gray-100 p-4 flex items-center justify-between rounded-b-2xl">
-                            <a class="underline text-xl focus:text-blue-400"  href="{{route('post.read', ['post' => $post->slug])}}">
-                                {{$post->title}}
-                            </a>
-                            <p class="text-lg text-gray-700">{{$post->publish_date->format('d M Y')}}</p>
-                        </div>
+                @foreach($posts as $post)
+                <div class="border-solid border-2 rounded-2xl h-96 mb-8">
+                    <!-- <div class="h-3/4 rounded-t-2xl image overlay" style="background-image: url(https://th.bing.com/th/id/OIP.mdKJwxRwCN2eGwRGig4l6wAAAA?rs=1&pid=ImgDetMain);" > -->
+                    <div class="h-3/4 rounded-t-2xl image overlay" style="background-image: url({{$post->image}});" >
                     </div>
-                    @endforeach
+                    <div class="h-1/4 bg-gray-100 p-4 flex items-center justify-between rounded-b-2xl">
+                        <a class="underline text-xl focus:text-blue-400"  href="{{route('post.read', ['post' => $post->slug])}}">
+                            {{$post->title}}
+                        </a>
+                        <p class="text-lg text-gray-700">{{$post->publish_date->format('d M Y')}}</p>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </body>
