@@ -24,6 +24,9 @@
                     <x-nav-link href="{{route('post.index')}}" :active="request()->routeIs('post.index')">
                         {{ __('Posts') }}
                     </x-nav-link>
+                    <x-nav-link href="{{route('redis.search')}}" :active="request()->routeIs('redis.search')">
+                        {{ __('Redis') }}
+                    </x-nav-link>
                 </div>
             </div>
 

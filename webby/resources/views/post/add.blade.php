@@ -1,5 +1,4 @@
 <x-app-layout>
-    <!-- <script type="text/javascript" src="node_modules/froala-editor/js/froala_editor.pkgd.min.js"></script> -->
     <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
 
     <x-slot name="header">

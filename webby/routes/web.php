@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RedisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/users/{user}/edit', 'DashboardController@edit')->middleware('admin')->name('users.edit');
         Route::put('/users/{user}/update', 'DashboardController@update')->middleware('admin')->name('users.update');
         Route::delete('/users/{user}/delete', 'DashboardController@delete')->middleware('admin')->name('users.delete');
+        Route::get('/users/remind/all', 'DashboardController@remind')->middleware('admin')->name('users.remind');
 
         Route::get('/post', 'PostController@index')->name('post.index');
         Route::get('/post/create', 'PostController@create')->name('post.create');
@@ -38,6 +40,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/post/{post}/edit', 'PostController@edit')->name('post.edit');
         Route::put('/post/{post}/update', 'PostController@update')->name('post.update');
         Route::delete('/post/{post}/delete', 'PostController@delete')->name('post.delete');
+
+
+        Route::get('/redis', 'RedisController@search')->name('redis.search');
+        Route::get('/redis/add', 'RedisController@addForm')->name('redis.form');
+        Route::get('/redis/search', 'RedisController@show')->name('redis.show');
+        Route::post('/redis/create', 'RedisController@add')->name('redis.add');
 
     });
 });

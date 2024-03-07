@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessReminderEmail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
@@ -88,6 +89,14 @@ class DashboardController extends Controller
     //delete user
     public function delete(User $user){
         $user->delete();
+
+        return redirect(route('users.show'));
+    }
+
+    //user remind email
+    public function remind(){
+        $users = User::all();
+        ProcessReminderEmail::dispatch($users);
 
         return redirect(route('users.show'));
     }
