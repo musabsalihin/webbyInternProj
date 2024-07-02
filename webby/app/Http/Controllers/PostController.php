@@ -20,7 +20,11 @@ class PostController extends Controller
 
     public function show(){
 
-        $data = $this->fetch_published_post();
+        $now = date('Y-m-d');
+        $data = Post::where([
+            ['status','=','Published'],
+            ['publish_date','<=',$now],
+        ])->get();
 
 //         dd($data);
         return view('welcome', ['posts' => $data]);

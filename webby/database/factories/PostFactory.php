@@ -20,7 +20,7 @@ class PostFactory extends Factory
             'title' => fake()->text(50),
             'description' => fake()->text(300),
             'publish_date' => fake()->dateTimeBetween('now', '+6 months')->format('Y-m-d'),
-            'status' => rand(0,1)?'published':'draft',
+            'status' => rand(0,1)?'Published':'draft',
         ];
     }
 }
