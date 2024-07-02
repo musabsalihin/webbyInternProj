@@ -9,21 +9,29 @@ class PostController extends Controller
 {
     //show all posts
     public function index(){
-        $posts = Post::all();
+        $posts = $this->fetch_all_posts();
 
         return view('post.index', ['posts' => $posts]);
     }
 
+    public function fetch_all_posts(){
+        return Post::all();
+    }
+
     public function show(){
-        // $posts = Post::all();
+
+        $data = $this->fetch_published_post();
+
+//         dd($data);
+        return view('welcome', ['posts' => $data]);
+    }
+
+    public function fetch_published_post(){
         $now = date('Y-m-d');
-        $test = Post::where([
+        return Post::where([
             ['status','=','Published'],
             ['publish_date','<=',$now],
         ])->get();
-        
-        // dd($test);
-        return view('welcome', ['posts' => $test]);
     }
 
     public function read(Post $post){
@@ -53,12 +61,12 @@ class PostController extends Controller
             'description' => 'required',
             'image' => 'nullable|mimes:jpeg,jpg,png',
             'publish_date' => 'required|after_or_equal:'.$current_date,
-            'status' => 'required'           
+            'status' => 'required'
         ]);
 
-        
+
         $newPost = Post::create($data);
-        
+
         if($request->has('image')){
             $img = $newPost->addMedia($request->image)->toMediaCollection('bg-posts');
             $path = $img->getUrl();
@@ -104,7 +112,7 @@ class PostController extends Controller
     //delete post
     public function delete(Post $post){
         $post->delete();
-        
+
         return redirect(route('post.index'));
     }
 }
