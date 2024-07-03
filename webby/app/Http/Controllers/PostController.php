@@ -9,13 +9,9 @@ class PostController extends Controller
 {
     //show all posts
     public function index(){
-        $posts = $this->fetch_all_posts();
+        $posts = Post::all();
 
         return view('post.index', ['posts' => $posts]);
-    }
-
-    public function fetch_all_posts(){
-        return Post::all();
     }
 
     public function show(){
@@ -28,14 +24,6 @@ class PostController extends Controller
 
 //         dd($data);
         return view('welcome', ['posts' => $data]);
-    }
-
-    public function fetch_published_post(){
-        $now = date('Y-m-d');
-        return Post::where([
-            ['status','=','Published'],
-            ['publish_date','<=',$now],
-        ])->get();
     }
 
     public function read(Post $post){

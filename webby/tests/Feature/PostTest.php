@@ -32,8 +32,8 @@ test('unauthenticated user cannot retrieve all posts', function () {
     $user = User::factory()->create();
 
     $response = $this->get(route('post.index'));
-    $user->delete();
     $this->assertGuest();
+    $user->delete();
     $response->assertRedirect(route('login'));
 });
 
@@ -81,14 +81,14 @@ test('new post can be created', function () {
         'action' => rand(0,1)?'Create Post':'Draft',
     ]);
 
+    $response->assertValid()
+        ->assertRedirect(route('post.index'));
     $this->assertDatabaseHas('posts', [
         'title' => $data->title,
     ]);
     $post = Post::firstWhere('title', $data->title);
     $post->delete();
 
-    $response->assertValid()
-        ->assertRedirect(route('post.index'));
 });
 
 test('no input for title; unable to create new post', function () {
@@ -131,7 +131,7 @@ test('no input for description; unable to create new post', function () {
     ]);
 });
 
-test('not input for publish date; unable to create new post', function () {
+test('no input for publish date; unable to create new post', function () {
 
     $user = User::factory()->create();
     $data = Post::factory()->make();
@@ -233,6 +233,8 @@ test('post can be deleted', function () {
 
     $user = User::factory()->create();
     $post = Post::factory()->create();
+
+    $this->assertModelExists($post);
 
     $response = $this->actingAs($user)
         ->delete(route('post.delete', $post));
